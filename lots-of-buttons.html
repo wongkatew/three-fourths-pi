@@ -110,9 +110,7 @@
   function load() {
     var mydata = JSON.parse(words);
     for(var i = 0; i < mydata.length; i++) {
-      console.log(mydata[i]);
       updateButton(mydata[i].one + " | " + mydata[i].two + " | " + mydata[i].three, i);
-      console.log(mydata[i].one + " < " + mydata[i].two + " < " + mydata[i].three);
     }
   }
 
