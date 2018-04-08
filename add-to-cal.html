@@ -66,12 +66,6 @@ function load() {
   var mydata = JSON.parse(data);
   for(var i = 0; i < mydata.length; i++) {
 
-    // don't add course if information is missing
-    if(!mydata[i].class || !mydata[i].type || !mydata[i].day || !mydata[i].time || !mydata[i].room || !mydata[i].number) {
-      console.log("Error loading" + mydata[i].class);
-      continue;
-    }
-
     // parse course
     var day = 0;
     var course = mydata[i].class;
@@ -81,9 +75,10 @@ function load() {
     else type = " (" + type + ")"; 
 
     var courseName = course + type;
+    if(!course || !type) courseName = "A Class";
 
     // set recurrence if not final
-    if(!mydata[i].date) {
+    if(!mydata[i].date || mydata[i].type != "Fl") {
 
       // parse days
       var days = mydata[i].day;
@@ -130,7 +125,7 @@ function load() {
 
     // no recurrence if final
     else {
-      days = "RRULE:";
+      days = "";
     }
 
     // parse time
@@ -149,7 +144,7 @@ function load() {
     endTime = endTime.substr(0, endTime.length - 2) + ":00-07:00";
 
     // set start date if not final
-    if(!mydata[i].date) {
+    if(!mydata[i].date || mydata[i].type != "Fl") {
       switch(day) {
         case 1:
         case 6:
@@ -189,39 +184,60 @@ function load() {
     // parse locations
     var location = mydata[i].room + " " + mydata[i].number;
 
-    addEvent(courseName, days, startTime, endTime, location);
+    // add event
+    addClass(courseName, days, startTime, endTime, location);
   }
 }
 
-function addEvent(courseName, days, startTime, endTime, location) {
-  var event = {
-    'summary': courseName,
-    'location': location,
-    'start': {
-      'dateTime': startTime,
-      'timeZone': 'America/Los_Angeles'
-    },
-    'end': {
-      'dateTime': endTime,
-      'timeZone': 'America/Los_Angeles'
-    },
-    'colorId': 3,
-    'recurrence': [
-      days
-    ],
-    'reminders': {
-      'useDefault': true
-    }
-  };
+function addClass(courseName, days, startTime, endTime, location) {
+
+  var event;
+  if(days === "") {
+    event = {
+      'summary': courseName,
+      'location': location,
+      'start': {
+        'dateTime': startTime,
+        'timeZone': 'America/Los_Angeles'
+      },
+      'end': {
+        'dateTime': endTime,
+        'timeZone': 'America/Los_Angeles'
+      },
+      'colorId': 3,
+      'reminders': {
+        'useDefault': true
+      }
+    };
+  }
+  else {
+    event = {
+      'summary': courseName,
+      'location': location,
+      'start': {
+        'dateTime': startTime,
+        'timeZone': 'America/Los_Angeles'
+      },
+      'end': {
+        'dateTime': endTime,
+        'timeZone': 'America/Los_Angeles'
+      },
+      'colorId': 3,
+      'recurrence': [
+        days
+      ],
+      'reminders': {
+        'useDefault': true
+      }
+    };
+  }
 
   var request = gapi.client.calendar.events.insert({
     'calendarId': 'primary',
     'resource': event
   });
 
-  request.execute(function(event) {
-    //console.log("event created");
-  });
+  request.execute(function(event) {});
 }
 </script>
 
