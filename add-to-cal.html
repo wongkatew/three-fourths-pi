@@ -67,7 +67,7 @@ function load() {
   for(var i = 0; i < mydata.length; i++) {
 
     // don't add course if information is missing
-    if(!mydata[i].course || !mydata[i].type || !mydata[i].day || !mydata[i].time || !mydata[i].room || !mydata[i].number) {
+    if(!mydata[i].class || !mydata[i].type || !mydata[i].day || !mydata[i].time || !mydata[i].room || !mydata[i].number) {
       console.log("Error loading class.");
       continue;
     }
