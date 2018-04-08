@@ -1,1 +1,1 @@
-data = '[{"class": "CSE101", "type": "LE", "day": "TuTh", "time": "2:00p-3:20p", "room": "CENTR", "number": "119"}, {"class": "MUS95L", "type": "ST", "day": "Th", "time": "7:00p-9:50p", "room": "CPMC|", "number": "136"}]';
+data = '[{"class": "CSE101", "type": "LE", "day": "TuTh", "time": "2:00p-3:20p", "room": "CENTR", "number": "119"}, {"class": "CSE101", "time": "3:00p-3:50p", "room": "CENTR", "number": "212"}]';

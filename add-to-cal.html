@@ -66,6 +66,7 @@ function load() {
   var mydata = JSON.parse(data);
   for(var i = 0; i < mydata.length; i++) {
 
+    // parse course
     var day = 0;
     var course = mydata[i].class;
 
@@ -75,6 +76,7 @@ function load() {
 
     var courseName = course + type;
 
+    // parse days
     var days = mydata[i].day;
     switch(days) {
       case "M":
@@ -107,13 +109,56 @@ function load() {
       default:
     }
 
+    // parse time
+    var times = mydata[i].time.split("-");
+    var startTime = times[0];
+    var endTime = times[1];
+    if(times[0].charAt(times[0].length - 1) === 'p') {
+      var parts = times[0].split(":");
+      startTime = (parseInt(parts[0]) + 12).toString() + ":" + parts[1];
+    }
+    if(times[1].charAt(times[1].length - 1) === 'p') {
+      var parts = times[1].split(":");
+      endTime = (parseInt(parts[0]) + 12).toString() + ":" + parts[1];
+    }
+    startTime = startTime.substr(0, startTime.length - 2) + ":00-07:00";
+    endTime = endTime.substr(0, endTime.length - 2) + ":00-07:00";
+
+    switch(day) {
+      case 1:
+      case 6:
+      case 9:
+        startTime = "2018-04-02T" + startTime;
+        endTime = "2018-04-02T" + endTime;
+        break;
+      case 2:
+      case 7:
+        startTime = "2018-04-03T" + startTime;
+        endTime = "2018-04-03T" + endTime;
+        break;
+      case 3:
+      case 8:
+        startTime = "2018-04-04T" + startTime;
+        endTime = "2018-04-04T" + endTime;
+        break;
+      case 4:
+        startTime = "2018-04-05T" + startTime;
+        endTime = "2018-04-05T" + endTime;
+        break;
+      case 5:
+        startTime = "2018-04-06T" + startTime;
+        endTime = "2018-04-06T" + endTime;
+        break;
+    }
+
+    // parse locations
     var location = mydata[i].room + " " + mydata[i].number;
 
-    addEvent(courseName, days, "1:00-1:50", location);
+    addEvent(courseName, days, startTime, endTime, location);
   }
 }
 
-function addEvent(courseName, days, time, location) {
+function addEvent(courseName, days, startTime, endTime, location) {
   var event = {
     'summary': courseName,
     'location': location,
