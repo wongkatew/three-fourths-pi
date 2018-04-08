@@ -71,7 +71,7 @@ function load() {
     var course = mydata[i].class;
 
     var type = mydata[i].type;
-    if(type != undefined) type = "";
+    if(type === undefined) type = "";
 
     var courseName = course + " (" + type + ")";
 
