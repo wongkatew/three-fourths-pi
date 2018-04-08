@@ -18,12 +18,25 @@
     <div class="row">
       <div class="col">
         <h1>Three-Fourths Pi:</h1>
-        <p>A new way to cohesively organize any written text document into a digital format</p>
+        <p>A new way to cohesively organize any written text document into a digital format.</p>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <p></p>
+        <h3>How it works:</h3>
+        <p>Take a photo of your hardcopy document.</p>
+        <p>Select the type of document it is.</p>
+        <p>And we'll convert it into an organized format to your Google Cloud!</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="startBtn" class="btn btn-primary">START</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p id="loggedInText">Logged in as:</p>
       </div>
     </div>
 
@@ -31,3 +44,23 @@
 </body>
 
 </html>
+<script>
+  let isLoggedIn = false;
+  $(document).ready(function() {
+    console.log('hello world');
+
+    // TODO check if user is logged in or not
+
+    var source = $('#entry-template').html();
+    var template = Handlebars.compile(source);
+  });
+
+$("#startBtn").click(function() {
+  if (isLoggedIn === false) {
+    window.location.href = 'sign-in-google.html';
+  } else {
+    window.location.href = 'select-material.html';
+  }
+})
+
+</script>
