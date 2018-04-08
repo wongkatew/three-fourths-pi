@@ -77,8 +77,8 @@ function load() {
 
     var days = mydata[i].day;
     switch(days) {
-      case 'M':
-        days = 'MO';
+      case "M":
+        days = "MO";
         day = 1;
       case "W":
         days = "WE";
@@ -101,6 +101,7 @@ function load() {
       default:
         days = "";
     }
+    days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=" + days;
 
     var location = mydata[i].room + " " + mydata[i].number;
 
@@ -122,7 +123,7 @@ function addEvent(courseName, days, time, location) {
     },
     'colorId': 3,
     'recurrence': [
-      "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE,FR"
+      days
     ],
     'reminders': {
       'useDefault': true
