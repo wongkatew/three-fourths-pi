@@ -139,9 +139,12 @@ function load() {
       var parts = times[1].split(":");
       if(parts[0] != "12") endTime = (parseInt(parts[0]) + 12).toString() + ":" + parts[1];
     }
-    console.log(startTime.substr(0, startTime.length - 2) + " plus " + ":00-07:00");
-    startTime = startTime.substr(0, startTime.length - 2) + ":00-07:00";
-    endTime = endTime.substr(0, endTime.length - 2) + ":00-07:00";
+    console.log(startTime.substr(0, startTime.length - 1) + " plus " + ":00-07:00");
+    startTime = startTime.substr(0, startTime.length - 1) + ":00-07:00";
+    console.log("new start time: " + startTime);
+    console.log(endTime.substr(0, endTime.length - 1) + " plus " + ":00-07:00");
+    endTime = endTime.substr(0, endTime.length - 1) + ":00-07:00";
+    console.log("new end time: " + endTime);
 
     // set start date if not final
     if(!mydata[i].date || mydata[i].type != "Fl") {
