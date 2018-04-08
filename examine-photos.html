@@ -22,37 +22,26 @@
     </div>
     <div class="row">
       <div class="col">
-        <h3>Receipt/Bill</h3>
-        <select class="form-control">
-          <option>Receipt</option>
-          <option>Bill</option>
-        </select>
-      </div>
-      <div class="col">
-        <button class="btn btn-primary" id="receiptBillBtn">Scan receipt <br>or bill</button>
+        <h3>Your Photo</h3>
+        <!-- TODO display photo-->
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <h3>Class Notes</h3>
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
+        <button class="btn btn-secondary" id="redoBtn">Redo photo</button>
       </div>
       <div class="col">
-        <button class="btn btn-primary" id="notesBtn">Scan class notes</button>
+        <button class="btn btn-secondary" id="nextPhotoBtn">Next photo</button>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <h3>Schedule</h3>
+        <p id="pageCount">Page 1/1</p> <!--TODO: update the page count-->
       </div>
+    </div>
+    <div class="row">
       <div class="col">
-        <button class="btn btn-primary" id="scheduleBtn">Scan schedule</button>
+        <button class="btn btn-primary" id="convertUploadBtn">Convert and Upload</button>
       </div>
     </div>
   </div>
@@ -68,21 +57,6 @@
 
     var source = $('#entry-template').html();
     var template = Handlebars.compile(source);
-  });
-
-  $("#receiptBillBtn").click(function() {
-    // update localStorage
-    window.location.href = 'scan-material.html';
-  });
-
-  $("#notesBtn").click(function() {
-    // update localStorage
-    window.location.href = 'scan-material.html';
-  });
-
-  $("#scheduleBtn").click(function() {
-    // update localStorage
-    window.location.href = 'scan-material.html';
   });
 
 </script>

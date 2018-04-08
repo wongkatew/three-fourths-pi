@@ -49,7 +49,7 @@
   $(document).ready(function() {
     console.log('hello world');
 
-    // TODO check if user is logged in or not
+    // TODO check if user is logged in or not in localStorage
 
     var source = $('#entry-template').html();
     var template = Handlebars.compile(source);
@@ -61,6 +61,6 @@ $("#startBtn").click(function() {
   } else {
     window.location.href = 'select-material.html';
   }
-})
+});
 
 </script>
