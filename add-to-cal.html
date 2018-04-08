@@ -70,15 +70,15 @@ function load() {
     var course = mydata[i].class;
 
     var type = mydata[i].type;
-    if(type === "undefined") type = "";
+    if(t != undefined) type = "";
     else type = " (" + type + ")"; 
 
     var courseName = course + type;
 
     var days = mydata[i].day;
     switch(days) {
-      case "M":
-        days = "MO";
+      case 'M':
+        days = 'MO';
         day = 1;
       case "W":
         days = "WE";
@@ -113,16 +113,16 @@ function addEvent(courseName, days, time, location) {
     'summary': courseName,
     'location': location,
     'start': {
-      'dateTime': '2018-04-09T11:00:00.000Z',
+      'dateTime': '2018-04-09T11:00:00-07:00',
       'timeZone': 'America/Los_Angeles'
     },
     'end': {
-      'dateTime': '2018-04-09T11:50:00.000Z',
+      'dateTime': '2018-04-09T11:50:00-07:00',
       'timeZone': 'America/Los_Angeles'
     },
     'colorId': 3,
     'recurrence': [
-      'RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE,FR'
+      "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE,FR"
     ],
     'reminders': {
       'useDefault': true
