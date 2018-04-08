@@ -69,7 +69,7 @@ function load() {
     // don't add course if information is missing
     if(!mydata[i].course || !mydata[i].type || !mydata[i].day || !mydata[i].time || !mydata[i].room || !mydata[i].number) {
       console.log("Error loading class.");
-      return;
+      continue;
     }
 
     // parse course
