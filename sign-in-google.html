@@ -5,6 +5,7 @@
   <title>three-fourths-pi</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="738391943718-bufbqeh5umjl665m39odhom4mc19e03c.apps.googleusercontent.com">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -26,6 +27,7 @@
       <div class="g-signin2" data-onsuccess="onSignIn"></div>
       <script>
         function onSignIn(googleUser) {
+          console.log("called func");
           var profile = googleUser.getBasicProfile();
           console.log("email: " + profile.getEmail());
         }
