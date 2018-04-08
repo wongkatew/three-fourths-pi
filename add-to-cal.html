@@ -135,7 +135,9 @@ function addEvent(courseName, days, time, location) {
     console.log("request sent");
   });
 
-  request.execute(function(event) {});
+  request.execute(function(event) {
+    console.log("event created");
+  });
 }
 </script>
 
