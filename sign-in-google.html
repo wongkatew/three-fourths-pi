@@ -24,7 +24,6 @@
       </div>
     </div>
     <div class="row">
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
       <script>
         function onSignIn(googleUser) {
           console.log("called func");
@@ -32,6 +31,7 @@
           console.log("email: " + profile.getEmail());
         }
       </script>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
   </div>
 </body>
