@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Simply Snap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="738391943718-bufbqeh5umjl665m39odhom4mc19e03c.apps.googleusercontent.com">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+	<link href="css/custom.css" rel="stylesheet"/>
+  </head>
+
+<body>
+  <div class="col">
+    <div class="row jumbotron">
+      <div class="col">
+        <img src="images/logo.png" alt="logo" width="350px" style="padding:10px;">
+        <p style="font-size: 16pt;">A new way to cohesively organize any written text document into a digital format.</p>
+      </div>
+    </div>
+    <div class="row section-block-container">
+      <div class="col section-block" style="margin-top: -25px;">
+        <h3 style="padding:10px;">How it works:</h3>
+        <img src="images/icondemo.png" width="250px;"></img>
+        <p>Take a photo of your hardcopy document.</p>
+        <p>Select the type of document it is (class notes or calendar).</p>
+        <p>And we'll convert it into an organized format through your Google account!</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="startBtn" class="btn btn-lg btn-primary">START</button>
+      </div>
+      <div class="col">
+        <button type="button" id="retrieveBtn" class="btn btn-lg btn-secondary">Retrieve Documents</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p id="loggedInText">Logged in as:</p>
+      </div>
+    </div>
+    <div class="row" style="padding:20px;">
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
+
+  </div>
+</body>
+
+</html>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB-QIMTKWbUsqBjVAt3sRBlcF7uwi-aPj4",
+    authDomain: "hackxx-bc1d9.firebaseapp.com",
+    databaseURL: "https://hackxx-bc1d9.firebaseio.com",
+    projectId: "hackxx-bc1d9",
+    storageBucket: "hackxx-bc1d9.appspot.com",
+    messagingSenderId: "1083020836133"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+  let isLoggedIn = false;
+  let userEmail = "Uninitialized";
+
+  $(document).ready(function() {
+    console.log('hello world');
+
+    // TODO check if user is logged in or not in localStorage
+    // check if user is logged in or not in localStorage
+    if (localStorage.getItem("loggedInUser") === null) {
+      isLoggedIn = false;
+      document.getElementById("loggedInText").innerHTML = "Not Logged In";
+    } else {
+      isLoggedIn = true;
+      userEmail = JSON.parse(localStorage.getItem("userEmail"));
+      document.getElementById("loggedInText").innerHTML = "Logged in as:" + userEmail;
+    }
+
+    var source = $('#entry-template').html();
+    var template = Handlebars.compile(source);
+  });
+
+$("#startBtn").click(function() {
+  console.log("start button pressed");
+  if (isLoggedIn === false) {
+    promptToSignIn();
+  } else {
+    window.location.href = 'select-material.html';
+  }
+});
+
+$("#retrieveBtn").click(function() {
+  console.log("retrieve documents button pressed");
+  if (isLoggedIn === false) {
+    promptToSignIn();
+  } else {
+    window.location.href = 'get-notes.html';
+  }
+});
+
+// Nathaniel's sign in function
+function onSignIn(googleUser) {
+  console.log("should get redirected to scan");
+  var profile = googleUser.getBasicProfile();
+  alert("You are signed in as: " + profile.getEmail());
+  localStorage.setItem("userEmail", JSON.stringify(profile.getEmail()));
+  localStorage.setItem("loggedInUser", JSON.stringify(profile.getName()));
+  window.location.href = "select-material.html";
+}
+
+function promptToSignIn() {
+  alert("Please sign in first.");
+}
+
+function toSignOut() {
+
+}
+
+</script>
