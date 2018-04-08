@@ -45,7 +45,7 @@
     <div class="section-block-container">
       <div class="row section-block">
         <div class="col" style="padding:10px;">
-          <h3>Class Notes</h3>
+          <h3>Large Text Document</h3>
           <p>Number of topics in this set of notes:</p>
           <select class="form-control">
             <option>1</option>
@@ -53,10 +53,28 @@
             <option>3</option>
             <option>4</option>
             <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
           </select>
         </div>
         <div class="col" style="padding:10px;">
-          <button class="btn btn-primary btn-lg" id="notesBtn">Scan class notes</button>
+          <button class="btn btn-primary btn-lg" id="largeNotesBtn">Scan large <br> class notes</button>
+          <p>Example: your 70-page lecture notes for the whole quarter</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-block-container">
+      <div class="row section-block">
+        <div class="col" style="padding:10px;">
+          <h3>Handwritten Notes</h3>
+          <p>Ensure that any pictures are boxed in a closed rectangle in red ink.</p>
+        </div>
+        <div class="col" style="padding:10px;">
+          <button class="btn btn-primary btn-lg" id="smallNotesBtn">Scan small <br> class notes</button>
+          <p>Example: your 1-page class diagram and description</p>
         </div>
       </div>
     </div>
@@ -64,9 +82,11 @@
       <div class="row section-block">
         <div class="col" style="padding:10px;">
           <h3>Schedule</h3>
+          <p>Provide an image of your schedule.</p>
         </div>
         <div class="col" style="padding:10px;">
           <button class="btn btn-primary btn-lg" id="scheduleBtn">Scan schedule</button>
+          <p>Example: Your UCSD WebReg schedule table</p>
         </div>
       </div>
     </div>
@@ -95,23 +115,20 @@
     console.log('hello world');
 
     // TODO check if user is logged in or not
-
-    var source = $('#entry-template').html();
-    var template = Handlebars.compile(source);
   });
 
-  $("#receiptBillBtn").click(function() {
-    // update localStorage
+  $("#largeNotesBtn").click(function() {
+    localStorage.setItem("currDocType", JSON.stringify("largeNotes"));
     window.location.href = 'scan-material.html';
   });
 
-  $("#notesBtn").click(function() {
-    // update localStorage
+  $('#smallNotesBtn').click(function() {
+    localStorage.setItem("currDocType", JSON.stringify("smallNotes"));
     window.location.href = 'scan-material.html';
   });
 
   $("#scheduleBtn").click(function() {
-    // update localStorage
+    localStorage.setItem("currDocType", JSON.stringify("schedule"));
     window.location.href = 'scan-material.html';
   });
 
