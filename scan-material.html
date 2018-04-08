@@ -42,10 +42,15 @@
         <h3 class="title-box-text">Choose a file to scan, or take a picture of it!</h3>
       </div>
     </div>
-    <div class="row section-block-container">
+    <div class="row section-block-container" id="takePhotoSection">
       <div class="col section-block" style="padding:20px;">
         <input type="file" accept="image/*" capture="camera">
       </div>
+    </div>
+    <div class="row section-block-container" id="calendarSection">
+      <div class="col section-block" style="padding:20px;">
+        <button class="btn btn-primary btn-lg" id="calButton"></button>
+      </duv>
     </div>
   </div>
 </body>
@@ -71,10 +76,18 @@
   $(document).ready(function() {
     console.log('hello world');
 
-    // TODO check if user is logged in or not
+    // check type of document to scan
+    var docType = JSON.parse(localStorage.getItem("currDocType"));
+    if (docType === "largeNotes") {
+      document.getElementById("takePhotoSection").style.display = "none";
+    } else if (docType === "smallNotes") {
+      document.getElementById("takePhotoSection").style.display = "block";
+    } else if (docType === "schedule") {
+      document.getElementById("takePhotoSection").style.display = "block";
+    } else {
+      alert("Select the type of document to show first! Go back a page.");
+    }
 
-    var source = $('#entry-template').html();
-    var template = Handlebars.compile(source);
   });
 
 </script>
