@@ -94,22 +94,37 @@
       document.getElementById("takePhotoSection").style.display = "none";
       document.getElementById("calendarSection").style.display = "none";
       document.getElementById("smallNotesSection").style.display = "none";
+      document.getElementById("largeNoteSection").style.display = "block";
     } else if (docType === "smallNotes") {
       document.getElementById("selectedText").innerHTML = "You have selected: Handwritten Notes";
       document.getElementById("takePhotoSection").style.display = "block";
       document.getElementById("calendarSection").style.display = "none";
       document.getElementById("smallNotesSection").style.display = "block";
+      document.getElementById("largeNoteSection").style.display = "none";
     } else if (docType === "schedule") {
       document.getElementById("selectedText").innerHTML = "You have selected: Schedule";
       document.getElementById("takePhotoSection").style.display = "block";
       document.getElementById("calendarSection").style.display = "block";
       document.getElementById("smallNotesSection").style.display = "none";
+      document.getElementById("largeNoteSection").style.display = "none";
     } else {
       alert("Select the type of document to show first! Go back a page.");
       document.getElementById("takePhotoSection").style.display = "none";
       document.getElementById("calendarSection").style.display = "none";
       document.getElementById("smallNotesSection").style.display = "none";
+      document.getElementById("largeNoteSection").style.display = "none";
     }
+  });
+
+  $('#calButton').click(function() {
+    // TODO
+  });
+
+  $('#smallNotesBtn').click(function() {
+    // TODO
+  });
+
+  $('#notSmolNoteButton').click(function() {
 
   });
 
