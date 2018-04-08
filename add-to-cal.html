@@ -134,13 +134,12 @@ function load() {
     if(times[0].charAt(times[0].length - 1) === 'p') {
       var parts = times[0].split(":");
       if(parts[0] != "12") startTime = (parseInt(parts[0]) + 12).toString() + ":" + parts[1];
-      console.log("start time: " + startTime);
     }
     if(times[1].charAt(times[1].length - 1) === 'p') {
       var parts = times[1].split(":");
       if(parts[0] != "12") endTime = (parseInt(parts[0]) + 12).toString() + ":" + parts[1];
-      console.log("end time: " + endTime);
     }
+    console.log(startTime.substr(0, startTime.length - 2) + " plus " + ":00-07:00");
     startTime = startTime.substr(0, startTime.length - 2) + ":00-07:00";
     endTime = endTime.substr(0, endTime.length - 2) + ":00-07:00";
 
