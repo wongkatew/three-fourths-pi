@@ -78,30 +78,34 @@ function load() {
     var days = mydata[i].day;
     switch(days) {
       case "M":
-        days = "MO";
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=MO";
         day = 1;
-      case "W":
-        days = "WE";
+      case "Tu":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=TU";
         day = 2;
-      case "F":
-        days = "FR";
+      case "W":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=WE";
         day = 3;
-      case "MW":
-        days = "MO,WE";
+      case "Th":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=TH";
         day = 4;
-      case "TuTh":
-        days = "TU,TH";
+      case "F":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=FR";
         day = 5;
-      case "WF":
-        days = "WE,FR";
+      case "MW":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=MO,WE";
         day = 6;
-      case "MWF":
-        days = "MO,WE,FR";
+      case "TuTh":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=TU,TH";
         day = 7;
+      case "WF":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=WE,FR";
+        day = 8;
+      case "MWF":
+        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=MO,WE,FR";
+        day = 9;
       default:
-        days = "";
     }
-    days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=" + days;
 
     var location = mydata[i].room + " " + mydata[i].number;
 
