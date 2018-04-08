@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <title>three-fourths-pi</title>
+  <title>Simply Snap</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-signin-scope" content="profile email">
@@ -18,18 +18,12 @@
 
 <body>
   <div class="col">
-    <div class="row">
-      <div class="col">
-        <h1>Three-Fourths Pi:</h1>
+    <div class="row title-box-container">
+      <div class="col title-box-text">
+        <h1>Simply Snap</h1>
       </div>
     </div>
     <div class="row">
-      <script>
-        function onSignIn(googleUser) {
-          console.log("should get redirected to scan");
-          window.location.href = "select-material.html";
-        }
-      </script>
       <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
   </div>
@@ -62,4 +56,12 @@
     var template = Handlebars.compile(source);
   });
 
+  // Nathaniel's sign in function
+  function onSignIn(googleUser) {
+    console.log("should get redirected to scan");
+    var profile = googleUser.getBasicProfile();
+    alert("userEmail: " + profile.getEmail());
+    localStorage.setItem("userEmail", JSON.stringify(profile.getBasicProfile));
+    window.location.href = "select-material.html";
+  }
 </script>
