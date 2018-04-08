@@ -27,9 +27,10 @@
     <div class="row section-block-container">
       <div class="col section-block" style="margin-top: -25px;">
         <h3 style="padding:10px;">How it works:</h3>
+        <img src="images/icondemo.png" width="250px;"></img>
         <p>Take a photo of your hardcopy document.</p>
-        <p>Select the type of document it is.</p>
-        <p>And we'll convert it into an organized format to your Google Cloud!</p>
+        <p>Select the type of document it is (class notes or calendar).</p>
+        <p>And we'll convert it into an organized format through your Google account!</p>
       </div>
     </div>
     <div class="row">
@@ -113,11 +114,16 @@ function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   alert("You are signed in as: " + profile.getEmail());
   localStorage.setItem("userEmail", JSON.stringify(profile.getEmail()));
+  localStorage.setItem("loggedInUser", JSON.stringify(profile.getName()));
   window.location.href = "select-material.html";
 }
 
 function promptToSignIn() {
   alert("Please sign in first.");
+}
+
+function toSignOut() {
+
 }
 
 </script>
