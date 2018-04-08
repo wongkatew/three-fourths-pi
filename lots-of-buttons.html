@@ -10,6 +10,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+  <script type="text/javascript" src="words.json"></script>
 	<link href="css/custom.css" rel="stylesheet"/>
   </head>
 
@@ -39,13 +40,50 @@
   <div class="col">
     <div class="row">
       <div class="col title-box-container">
-        <h3 class="title-box-text">FIXMEEXAMPLEHEADER</h3>
+        <h3 class="title-box-text">Select Topic for Perusal</h3>
       </div>
     </div>
     <div class="section-block-container">
-      <div class="row section-block">
-        <div class="col" style="padding:10px;">
-          <!--FIXME example body you can put stuff here-->
+      <div class="col section-block">
+        <div class="row" style="padding:5px;">
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button0">//</button>
+          </div>
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button1">//</button>
+          </div>
+        </div>
+        <div class="row" style="padding:5px;">
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button2">//</button>
+          </div>
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button3">//</button>
+          </div>
+        </div>
+        <div class="row" style="padding:5px;">
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button4">//</button>
+          </div>
+          <div class="col" style="padding:5px;"">
+            <button class="btn btn-primary btn-lg" id="topic-button5">//</button>
+          </div>
+        </div>
+        <div class="row" style="padding:5px;">
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button6">//</button>
+          </div>
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button7">//</button>
+          </div>
+        </div>
+        <div class="row" style="padding:5px;">
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button8">//</button>
+          </div>
+          <div class="col" style="padding:5px;">
+            <button class="btn btn-primary btn-lg" id="topic-button9">//</button>
+          </div>
         </div>
       </div>
     </div>
@@ -69,19 +107,31 @@
 </script>
 
 <script>
-  // let isLoggedIn = false;
+  function load() {
+    var mydata = JSON.parse(words);
+    for(var i = 0; i < mydata.length; i++) {
+      console.log(mydata[i]);
+      updateButton(mydata[i].one + " | " + mydata[i].two + " | " + mydata[i].three, i);
+      console.log(mydata[i].one + " < " + mydata[i].two + " < " + mydata[i].three);
+    }
+  }
+
+  function updateButton(desc, ind) {
+    document.getElementById("topic-button" + ind).innerHTML = desc;
+  }
+</script>
+
+<script>
   $(document).ready(function() {
+
+    load();
     console.log('hello world');
 
-    // TODO check if user is logged in or not
   });
 
-  /* example button jQuery onClick listener
   $("#largeNotesBtn").click(function() {
     localStorage.setItem("currDocType", JSON.stringify("largeNotes"));
     window.location.href = 'scan-material.html';
   });
-  */
-
 
 </script>
