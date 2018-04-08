@@ -60,8 +60,8 @@
   function onSignIn(googleUser) {
     console.log("should get redirected to scan");
     var profile = googleUser.getBasicProfile();
-    alert("userEmail: " + profile.getEmail());
-    localStorage.setItem("userEmail", JSON.stringify(profile.getBasicProfile));
+    alert("You are signed in as: " + profile.getEmail());
+    localStorage.setItem("userEmail", JSON.stringify(profile.getEmail()));
     window.location.href = "select-material.html";
   }
 </script>
