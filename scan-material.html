@@ -45,7 +45,7 @@
     </div>
     <div class="row section-block-container" id="takePhotoSection">
       <div class="col section-block" style="padding:20px;">
-        <input type="file" accept="image/*" capture="camera">
+        <input type="file" accept="image/*" capture="camera" id="fileLocation">
       </div>
     </div>
     <div class="row section-block-container" id="calendarSection">
@@ -117,15 +117,25 @@
   });
 
   $('#calButton').click(function() {
-    // TODO
+    window.location.href='add-to-cal.html';
   });
 
   $('#smallNotesBtn').click(function() {
-    // TODO
+    window.location.href='handwriting.html';
   });
 
   $('#notSmolNoteButton').click(function() {
-
+    window.location.href='lots-of-buttons.html';
   });
+
+  function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0);
+  }
 
 </script>
