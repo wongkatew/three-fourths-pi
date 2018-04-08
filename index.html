@@ -39,7 +39,6 @@
         <button type="button" id="retrieveBtn" class="btn btn-primary">Retrieve Documents</button>
       </div>
     </div>
-    <a href="#" onclick="signOut();">Sign out</a>
     <script>
       function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
@@ -48,6 +47,11 @@
         });
       }
     </script>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="signoutBtn" class="btn btn-primary" onclick="signOut();">Sign out</button>
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <p id="loggedInText">Logged in as:</p>
