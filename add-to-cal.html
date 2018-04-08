@@ -57,7 +57,9 @@ function initClient() {
     clientId: '738391943718-ns16hfsl17cf6bm6eknoc8d06ito79n5.apps.googleusercontent.com',
     discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
     scope: "https://www.googleapis.com/auth/calendar"
-  }).then(function () {});
+  }).then(function () {
+    gapi.auth2.getAuthInstance().signIn();
+  });
 }
 </script>
 
