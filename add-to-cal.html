@@ -78,31 +78,31 @@ function load() {
     var days = mydata[i].day;
     switch(days) {
       case "M":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=MO";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO";
         day = 1;
       case "Tu":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=TU";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TU";
         day = 2;
       case "W":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=WE";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=WE";
         day = 3;
       case "Th":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=TH";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TH";
         day = 4;
       case "F":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=FR";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=FR";
         day = 5;
       case "MW":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=MO,WE";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE";
         day = 6;
       case "TuTh":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=TU,TH";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TU,TH";
         day = 7;
       case "WF":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=WE,FR";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=WE,FR";
         day = 8;
       case "MWF":
-        days = "RRULE:FREQ=WEEKLY,UNTIL=20180609;BYDAY=MO,WE,FR";
+        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE,FR";
         day = 9;
       default:
     }
