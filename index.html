@@ -44,7 +44,7 @@
     </div>
     <script>
       function signOut() {
-        GoogleAuth.signOut().then(function () {
+        api.auth2.signOut().then(function () {
           console.log('User signed out.');
         });
       }
