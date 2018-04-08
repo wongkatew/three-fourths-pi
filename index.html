@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>three-fourths-pi</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+	<link href="css/custom.css" rel="stylesheet"/>
+  </head>
+
+<body>
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <h1>Three-Fourths Pi:</h1>
+        <p>A new way to cohesively organize any written text document into a digital format.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3>How it works:</h3>
+        <p>Take a photo of your hardcopy document.</p>
+        <p>Select the type of document it is.</p>
+        <p>And we'll convert it into an organized format to your Google Cloud!</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="startBtn" class="btn btn-primary">START</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="button" id="retrieveBtn" class="btn btn-primary">Retrieve Documents</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p id="loggedInText">Logged in as:</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB-QIMTKWbUsqBjVAt3sRBlcF7uwi-aPj4",
+    authDomain: "hackxx-bc1d9.firebaseapp.com",
+    databaseURL: "https://hackxx-bc1d9.firebaseio.com",
+    projectId: "hackxx-bc1d9",
+    storageBucket: "hackxx-bc1d9.appspot.com",
+    messagingSenderId: "1083020836133"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+  let isLoggedIn = false;
+  $(document).ready(function() {
+    console.log('hello world');
+
+    // TODO check if user is logged in or not in localStorage
+
+    var source = $('#entry-template').html();
+    var template = Handlebars.compile(source);
+  });
+
+$("#startBtn").click(function() {
+  if (isLoggedIn === false) {
+    window.location.href = 'sign-in-google.html';
+  } else {
+    window.location.href = 'select-material.html';
+  }
+});
+
+</script>
