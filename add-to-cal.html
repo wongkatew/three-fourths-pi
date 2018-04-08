@@ -134,7 +134,9 @@ function addEvent(courseName, days, time, location) {
     'resource': event
   });
 
-  request.execute(function(event) {});
+  request.execute(function(event) {
+    console.log("event created");
+  });
 }
 </script>
 
