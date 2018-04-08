@@ -132,6 +132,7 @@ function addEvent(courseName, days, time, location) {
   var request = gapi.client.calendar.events.insert({
     'calendarId': 'primary',
     'resource': event
+    console.log("request sent");
   });
 
   request.execute(function(event) {});
