@@ -81,6 +81,24 @@
 </script>
 
 <script>
+  function handleClientLoad() {
+    gapi.load('client:auth2', initClient);
+  }
+
+  function initClient() {
+    gapi.client.init({
+      apiKey: "AIzaSyApo_0Eu5cyXnDHdvTGALU85SLC835Agvk",
+      clientId: "738391943718-bufbqeh5umjl665m39odhom4mc19e03c.apps.googleusercontent.com"
+    });
+  }
+</script>
+
+<script async defer src="https://apis.google.com/js/api.js"
+  onload="this.onload=function(){};handleClientLoad()"
+  onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+<script>
   let isLoggedIn = false;
   $(document).ready(function() {
     console.log('hello world');
