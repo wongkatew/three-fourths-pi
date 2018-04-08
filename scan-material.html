@@ -14,15 +14,36 @@
   </head>
 
 <body>
+  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">
+      <img src="images/logo.png" width="84" height="32" class="d-inline-block align-top" alt="">
+      Simply Snap
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="select-material.html">Select Type of Document to Scan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="get-notes.html">Access Class Notes</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <div class="col">
     <div class="row">
       <div class="col title-box-container">
-        <h1 class="title-box-text">Simply Snap</h1>
+        <h3 class="title-box-text">Choose a file to scan, or take a picture of it!</h3>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <h3>Take a Picture</h3>
+    <div class="row section-block-container">
+      <div class="col section-block" style="padding:20px;">
         <input type="file" accept="image/*" capture="camera">
       </div>
     </div>
