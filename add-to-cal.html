@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Simply Snap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+  <script type="text/javascript" src="data.json"></script>
+	<link href="css/custom.css" rel="stylesheet"/>
+  </head>
+
+<body onload="handleClientLoad();">
+  <div class="col">
+    <div class="row">
+      <div class="col title-box-container">
+        <h1 class="title-box-text">Simply Snap</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" id="sentToCalBtn">Send Information to Calendar</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB-QIMTKWbUsqBjVAt3sRBlcF7uwi-aPj4",
+    authDomain: "hackxx-bc1d9.firebaseapp.com",
+    databaseURL: "https://hackxx-bc1d9.firebaseio.com",
+    projectId: "hackxx-bc1d9",
+    storageBucket: "hackxx-bc1d9.appspot.com",
+    messagingSenderId: "1083020836133"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+function handleClientLoad() {
+  gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+  gapi.client.init({
+    apiKey: 'AIzaSyApo_0Eu5cyXnDHdvTGALU85SLC835Agvk',
+    clientId: '738391943718-ns16hfsl17cf6bm6eknoc8d06ito79n5.apps.googleusercontent.com',
+    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+    scope: "https://www.googleapis.com/auth/calendar"
+  }).then(function () {});
+}
+</script>
+
+<script>
+function load() {
+  var mydata = JSON.parse(data);
+  for(var i = 0; i < mydata.length; i++) {
+
+    var day = 0;
+    var course = mydata[i].class;
+
+    var type = mydata[i].type;
+    if(type === "undefined") type = "";
+    else type = " (" + type + ")"; 
+
+    var courseName = course + type;
+
+    var days = mydata[i].day;
+    switch(days) {
+      case "M":
+        days = "MO";
+        day = 1;
+      case "W":
+        days = "WE";
+        day = 2;
+      case "F":
+        days = "FR";
+        day = 3;
+      case "MW":
+        days = "MO,WE";
+        day = 4;
+      case "TuTh":
+        days = "TU,TH";
+        day = 5;
+      case "WF":
+        days = "WE,FR";
+        day = 6;
+      case "MWF":
+        days = "MO,WE,FR";
+        day = 7;
+      default:
+        days = "";
+    }
+
+    var location = mydata[i].room + " " + mydata[i].number;
+
+    addEvent(courseName, days, "1:00-1:50", location);
+  }
+}
+
+function addEvent(courseName, days, time, location) {
+  var event = {
+    'summary': courseName,
+    'location': location,
+    'start': {
+      'dateTime': '2018-04-09T11:00:00-07:00',
+      'timeZone': 'America/Los_Angeles'
+    },
+    'end': {
+      'dateTime': '2018-04-09T11:50:00-07:00',
+      'timeZone': 'America/Los_Angeles'
+    },
+    'colorId': 3,
+    'recurrence': [
+      'RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=' + days
+    ],
+    'reminders': {
+      'useDefault': true
+    }
+  };
+
+  var request = gapi.client.calendar.events.insert({
+    'calendarId': 'primary',
+    'resource': event
+  });
+
+  request.execute(function(event) {});
+}
+</script>
+
+<script>
+  // let isLoggedIn = false;
+  $(document).ready(function() {
+    console.log('hello world');
+
+    // TODO check if user is logged in or not
+
+    var source = $('#entry-template').html();
+    var template = Handlebars.compile(source);
+  });
+
+  $('#sentToCalBtn').click(function() {
+    window.location.href='#';
+    // TODO: remove photo from localStorage and set page count to the same
+    load();
+  });
+
+</script>

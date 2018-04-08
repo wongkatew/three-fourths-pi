@@ -95,12 +95,6 @@
         load();
       }
 
-      function load() {
-        var mydata = JSON.parse(data);
-        for(var i = 0; i < mydata.length; i++) {
-          console.log(mydata[i].course + " type: " + mydata[i].type);
-        }
-      }
       function addEvent(courseName, days, time, location) {
   var event = {
     'summary': 'CSE 100 (LE)',
