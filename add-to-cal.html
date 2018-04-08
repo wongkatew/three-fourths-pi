@@ -66,6 +66,12 @@ function load() {
   var mydata = JSON.parse(data);
   for(var i = 0; i < mydata.length; i++) {
 
+    // don't add course if information is missing
+    if(!mydata[i].course || !mydata[i].type || !mydata[i].day || !mydata[i].time || !mydata[i].room || !mydata[i].number) {
+      console.log("Error loading class.");
+      return;
+    }
+
     // parse course
     var day = 0;
     var course = mydata[i].class;
@@ -76,37 +82,55 @@ function load() {
 
     var courseName = course + type;
 
-    // parse days
-    var days = mydata[i].day;
-    switch(days) {
-      case "M":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO";
-        day = 1;
-      case "Tu":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TU";
-        day = 2;
-      case "W":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=WE";
-        day = 3;
-      case "Th":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TH";
-        day = 4;
-      case "F":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=FR";
-        day = 5;
-      case "MW":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE";
-        day = 6;
-      case "TuTh":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TU,TH";
-        day = 7;
-      case "WF":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=WE,FR";
-        day = 8;
-      case "MWF":
-        days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE,FR";
-        day = 9;
-      default:
+    // set recurrence if not final
+    if(!myData[i].date) {
+
+      // parse days
+      var days = mydata[i].day;
+      switch(days) {
+        case "M":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO";
+          day = 1;
+          break;
+        case "Tu":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TU";
+          day = 2;
+          break;
+        case "W":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=WE";
+          day = 3;
+          break;
+        case "Th":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TH";
+          day = 4;
+          break;
+        case "F":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=FR";
+          day = 5;
+          break;
+        case "MW":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE";
+          day = 6;
+          break;
+        case "TuTh":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=TU,TH";
+          day = 7;
+          break;
+        case "WF":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=WE,FR";
+          day = 8;
+          break;
+        case "MWF":
+          days = "RRULE:FREQ=WEEKLY;UNTIL=20180609;BYDAY=MO,WE,FR";
+          day = 9;
+          break;
+        default:
+      }
+    }
+
+    // no recurrence if final
+    else {
+      days = "RRULE:";
     }
 
     // parse time
@@ -124,31 +148,42 @@ function load() {
     startTime = startTime.substr(0, startTime.length - 2) + ":00-07:00";
     endTime = endTime.substr(0, endTime.length - 2) + ":00-07:00";
 
-    switch(day) {
-      case 1:
-      case 6:
-      case 9:
-        startTime = "2018-04-02T" + startTime;
-        endTime = "2018-04-02T" + endTime;
-        break;
-      case 2:
-      case 7:
-        startTime = "2018-04-03T" + startTime;
-        endTime = "2018-04-03T" + endTime;
-        break;
-      case 3:
-      case 8:
-        startTime = "2018-04-04T" + startTime;
-        endTime = "2018-04-04T" + endTime;
-        break;
-      case 4:
-        startTime = "2018-04-05T" + startTime;
-        endTime = "2018-04-05T" + endTime;
-        break;
-      case 5:
-        startTime = "2018-04-06T" + startTime;
-        endTime = "2018-04-06T" + endTime;
-        break;
+    // set start date if not final
+    if(!mydata[i].date) {
+      switch(day) {
+        case 1:
+        case 6:
+        case 9:
+          startTime = "2018-04-02T" + startTime;
+          endTime = "2018-04-02T" + endTime;
+          break;
+        case 2:
+        case 7:
+          startTime = "2018-04-03T" + startTime;
+          endTime = "2018-04-03T" + endTime;
+          break;
+        case 3:
+        case 8:
+          startTime = "2018-04-04T" + startTime;
+          endTime = "2018-04-04T" + endTime;
+          break;
+        case 4:
+          startTime = "2018-04-05T" + startTime;
+          endTime = "2018-04-05T" + endTime;
+          break;
+        case 5:
+          startTime = "2018-04-06T" + startTime;
+          endTime = "2018-04-06T" + endTime;
+          break;
+      }
+    }
+
+    // use provided date if final
+    else {
+      var parts = mydata[i].date.split("/");
+      var date = parts[2] + "-" + parts[0] + "-" + parts[1] + "T";
+      startTime = date + startTime;
+      endTime = date + endTime;
     }
 
     // parse locations
