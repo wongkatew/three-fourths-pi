@@ -15,15 +15,15 @@
 
 <body>
   <div class="col">
-    <div class="row">
+    <div class="row jumbotron">
       <div class="col">
-        <h1>Three-Fourths Pi:</h1>
-        <p>A new way to cohesively organize any written text document into a digital format.</p>
+        <img src="images/logo.png" alt="logo" width="350px" style="padding:10px;">
+        <p style="font-size: 16pt;">A new way to cohesively organize any written text document into a digital format.</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <h3>How it works:</h3>
+    <div class="row section-block-container">
+      <div class="col section-block" style="margin-top: -25px;">
+        <h3 style="padding:10px;">How it works:</h3>
         <p>Take a photo of your hardcopy document.</p>
         <p>Select the type of document it is.</p>
         <p>And we'll convert it into an organized format to your Google Cloud!</p>
@@ -31,12 +31,10 @@
     </div>
     <div class="row">
       <div class="col">
-        <button type="button" id="startBtn" class="btn btn-primary">START</button>
+        <button type="button" id="startBtn" class="btn btn-lg btn-primary">START</button>
       </div>
-    </div>
-    <div class="row">
       <div class="col">
-        <button type="button" id="retrieveBtn" class="btn btn-primary">Retrieve Documents</button>
+        <button type="button" id="retrieveBtn" class="btn btn-lg btn-secondary">Retrieve Documents</button>
       </div>
     </div>
     <div class="row">
@@ -65,10 +63,21 @@
 
 <script>
   let isLoggedIn = false;
+  let userEmail = "Uninitialized";
+
   $(document).ready(function() {
     console.log('hello world');
 
     // TODO check if user is logged in or not in localStorage
+    // check if user is logged in or not in localStorage
+    if (localStorage.getItem("loggedInUser") === null) {
+      isLoggedIn = false;
+      document.getElementById("loggedInText").innerHTML = "Not Logged In";
+    } else {
+      isLoggedIn = true;
+      userEmail = JSON.parse(localStorage.getItem("userEmail"));
+      document.getElementById("loggedInText").innerHTML = "Logged in as:" + userEmail;
+    }
 
     var source = $('#entry-template').html();
     var template = Handlebars.compile(source);

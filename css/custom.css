@@ -1,0 +1,32 @@
+.btn-primary {
+  background-color: #FF9901;
+  color: black;
+  border: none;
+}
+
+.btn-primary:active {
+  background-color: #c79a00;
+  color: black;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #26c6da;
+  color: black;
+  border: none;
+}
+
+.btn-secondary:active {
+  background-color: #0095a8;
+  color: black;
+  border: none;
+}
+
+.section-block {
+  background-color: #E0E0E0;
+  border-radius: 25px;
+}
+
+.section-block-container {
+  padding: 10px;
+}

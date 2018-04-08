@@ -22,6 +22,18 @@
     </div>
     <div class="row">
       <div class="col">
+        <h3>Receipt/Bill</h3>
+        <select class="form-control">
+          <option>Receipt</option>
+          <option>Bill</option>
+        </select>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" id="receiptBillBtn">Scan receipt <br>or bill</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
         <h3>Class Notes</h3>
         <select class="form-control">
           <option>1</option>
@@ -71,6 +83,11 @@
 
     var source = $('#entry-template').html();
     var template = Handlebars.compile(source);
+  });
+
+  $("#receiptBillBtn").click(function() {
+    // update localStorage
+    window.location.href = 'scan-material.html';
   });
 
   $("#notesBtn").click(function() {
