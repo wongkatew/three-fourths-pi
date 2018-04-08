@@ -1,6 +1,8 @@
 import io
 import os
 import sys
+import csv
+import string
 
 import pandas as pd
 import numpy as np
@@ -26,19 +28,20 @@ from collections import OrderedDict, Counter
 
 import docx
 
-cl = 17
+cl = 10
 
 #Download MLTK English tokenizer/stopwords 
 #nltk.download('punkt')
 #nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
-
+translator = str.maketrans('', '', string.punctuation)
 #read in dataset
 def getText(filename):
     doc = docx.Document(filename)
     fullText = []
     for para in doc.paragraphs:
-        fullText.append(para.text.lower())
+    	str_para = para.text.translate(translator)
+    	fullText.append(str_para.lower())
     return fullText
 
 data = getText('CogsNotes.docx')
@@ -76,7 +79,7 @@ data2D = pca.transform(tf) #data2D = number of posts * 2
 
 #print("plotting k-means analysis")
 #use K-means on data and plot means on PCA graph 
-kmeans = MiniBatchKMeans(n_clusters=cl, random_state=1337).fit(tf) #default threshold
+kmeans = MiniBatchKMeans(n_clusters=cl, random_state=500).fit(tf) #default threshold
 centers2D = pca.transform(kmeans.cluster_centers_)
 
 #plt.show()              
@@ -184,4 +187,10 @@ for i in range(cl):
 	top30_dict.append(cnt.most_common(30))
 	print(top30_dict[i])
 	print()
+
+top30_strings = []
+for i in range(cl):
+	 ' '.join(top30_dict[i])
+
+
 
