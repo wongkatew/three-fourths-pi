@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <title>three-fourths-pi</title>
+  <title>Simply Snap</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -16,43 +16,36 @@
 <body>
   <div class="col">
     <div class="row">
-      <div class="col">
-        <h1>Three-Fourths Pi:</h1>
+      <div class="col title-box-container">
+        <h1 class="title-box-text">Simply Snap</h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <h3>Receipt/Bill</h3>
-        <select class="form-control">
-          <option>Receipt</option>
-          <option>Bill</option>
-        </select>
-      </div>
-      <div class="col">
-        <button class="btn btn-primary" id="receiptBillBtn">Scan receipt <br>or bill</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <h3>Class Notes</h3>
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
-      <div class="col">
-        <button class="btn btn-primary" id="notesBtn">Scan class notes</button>
+    <div class="section-block-container">
+      <div class="row section-block">
+        <div class="col" style="padding:10px;">
+          <h3>Class Notes</h3>
+          <p>Number of topics in this set of notes:</p>
+          <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="col" style="padding:10px;">
+          <button class="btn btn-primary" id="notesBtn">Scan class notes</button>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <h3>Schedule</h3>
-      </div>
-      <div class="col">
-        <button class="btn btn-primary" id="scheduleBtn">Scan schedule</button>
+    <div class="section-block-container">
+      <div class="row section-block">
+        <div class="col" style="padding:10px;">
+          <h3>Schedule</h3>
+        </div>
+        <div class="col" style="padding:10px;">
+          <button class="btn btn-primary" id="scheduleBtn">Scan schedule</button>
+        </div>
       </div>
     </div>
   </div>
