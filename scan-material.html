@@ -40,17 +40,28 @@
     <div class="row">
       <div class="col title-box-container">
         <h3 class="title-box-text">Choose a file to scan, or take a picture of it!</h3>
+        <p class="title-box-text" id="selectedText">You have selected: 0</p>
       </div>
     </div>
     <div class="row section-block-container" id="takePhotoSection">
       <div class="col section-block" style="padding:20px;">
-        <input type="file" accept="image/*" capture="camera">
+        <input type="file" accept="image/*" capture="camera" id="fileLocation">
       </div>
     </div>
     <div class="row section-block-container" id="calendarSection">
       <div class="col section-block" style="padding:20px;">
-        <button class="btn btn-primary btn-lg" id="calButton"></button>
-      </duv>
+        <button class="btn btn-primary btn-lg" id="calButton">Upload and Convert</button>
+      </div>
+    </div>
+    <div class="row section-block-container" id="smallNotesSection">
+      <div class="col section-block" style="padding:20px;">
+        <button class="btn btn-primary btn-lg" id="smolNoteButton">Upload and Convert</button>
+      </div>
+    </div>
+    <div class="row section-block-container" id="largeNoteSection">
+      <div class="col section-block" style="padding:20px;">
+        <button class="btn btn-primary btn-lg" id="notSmolNoteButton">Upload and Convert</button>
+      </div>
     </div>
   </div>
 </body>
@@ -79,15 +90,52 @@
     // check type of document to scan
     var docType = JSON.parse(localStorage.getItem("currDocType"));
     if (docType === "largeNotes") {
-      document.getElementById("takePhotoSection").style.display = "none";
+      document.getElementById("selectedText").innerHTML = "You have selected: Large Text Document";
+      document.getElementById("takePhotoSection").style.display = "block";
+      document.getElementById("calendarSection").style.display = "none";
+      document.getElementById("smallNotesSection").style.display = "none";
+      document.getElementById("largeNoteSection").style.display = "block";
     } else if (docType === "smallNotes") {
+      document.getElementById("selectedText").innerHTML = "You have selected: Handwritten Notes";
       document.getElementById("takePhotoSection").style.display = "block";
+      document.getElementById("calendarSection").style.display = "none";
+      document.getElementById("smallNotesSection").style.display = "block";
+      document.getElementById("largeNoteSection").style.display = "none";
     } else if (docType === "schedule") {
+      document.getElementById("selectedText").innerHTML = "You have selected: Schedule";
       document.getElementById("takePhotoSection").style.display = "block";
+      document.getElementById("calendarSection").style.display = "block";
+      document.getElementById("smallNotesSection").style.display = "none";
+      document.getElementById("largeNoteSection").style.display = "none";
     } else {
       alert("Select the type of document to show first! Go back a page.");
+      document.getElementById("takePhotoSection").style.display = "none";
+      document.getElementById("calendarSection").style.display = "none";
+      document.getElementById("smallNotesSection").style.display = "none";
+      document.getElementById("largeNoteSection").style.display = "none";
     }
-
   });
+
+  $('#calButton').click(function() {
+    window.location.href='add-to-cal.html';
+  });
+
+  $('#smallNotesBtn').click(function() {
+    window.location.href='handwriting.html';
+  });
+
+  $('#notSmolNoteButton').click(function() {
+    window.location.href='lots-of-buttons.html';
+  });
+
+  function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0);
+  }
 
 </script>
