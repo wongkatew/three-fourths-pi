@@ -91,20 +91,20 @@
     console.log('hello world');
 
     // check type of document to scan
-    var docType = JSON.parse(localStorage.getItem("currDocType"));
-    if (docType === "largeNotes") {
+    var docType2 = JSON.parse(localStorage.getItem("currDocType"));
+    if (docType2 === "largeNotes") {
       document.getElementById("selectedText").innerHTML = "You have selected: Large Text Document";
       document.getElementById("takePhotoSection").style.display = "block";
       document.getElementById("calendarSection").style.display = "none";
       document.getElementById("smallNotesSection").style.display = "none";
       document.getElementById("largeNoteSection").style.display = "block";
-    } else if (docType === "smallNotes") {
+    } else if (docType2 === "smallNotes") {
       document.getElementById("selectedText").innerHTML = "You have selected: Handwritten Notes";
       document.getElementById("takePhotoSection").style.display = "block";
       document.getElementById("calendarSection").style.display = "none";
       document.getElementById("smallNotesSection").style.display = "block";
       document.getElementById("largeNoteSection").style.display = "none";
-    } else if (docType === "schedule") {
+    } else if (docType2 === "schedule") {
       document.getElementById("selectedText").innerHTML = "You have selected: Schedule";
       document.getElementById("takePhotoSection").style.display = "block";
       document.getElementById("calendarSection").style.display = "block";
@@ -159,5 +159,6 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
 } else {
     alert('The File APIs are not fully supported in this browser.');
 }
+
 
 </script>
