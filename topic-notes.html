@@ -10,7 +10,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
-  <script type="text/javascript" src="words.json"></script>
+  <script type="text/javascript" src="label0.json"></script>
 	<link href="css/custom.css" rel="stylesheet"/>
   </head>
 
@@ -28,11 +28,11 @@
         <li class="nav-item">
           <a class="nav-link" href="index.html">Home</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="select-material.html">Select Type of Document to Scan</span></a>
-        </li>
         <li class="nav-item">
-          <a class="nav-link" href="get-notes.html">Access Class Notes</a>
+          <a class="nav-link" href="select-material.html">Select Type of Document to Scan</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Access Class Notes<span class="sr-only">(current)</span></a>
         </li>
       </ul>
     </div>
@@ -40,56 +40,16 @@
   <div class="col">
     <div class="row">
       <div class="col title-box-container">
-        <h3 class="title-box-text">Select Topic for Perusal</h3>
+        <h3 class="title-box-text">Review Notes for Memory | Does | Work</h3>
       </div>
     </div>
     <div class="section-block-container">
-      <div class="col section-block">
-        <div class="row" style="padding:5px;">
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button0">//</button>
-          </div>
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button1">//</button>
-          </div>
-        </div>
-        <div class="row" style="padding:5px;">
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button2">//</button>
-          </div>
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button3">//</button>
-          </div>
-        </div>
-        <div class="row" style="padding:5px;">
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button4">//</button>
-          </div>
-          <div class="col" style="padding:5px;"">
-            <button class="btn btn-primary btn-lg" id="topic-button5">//</button>
-          </div>
-        </div>
-        <div class="row" style="padding:5px;">
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button6">//</button>
-          </div>
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button7">//</button>
-          </div>
-        </div>
-        <div class="row" style="padding:5px;">
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button8">//</button>
-          </div>
-          <div class="col" style="padding:5px;">
-            <button class="btn btn-primary btn-lg" id="topic-button9">//</button>
-          </div>
-        </div>
+      <div class="row section-block">
+        <p id="notes" style="padding:10px;">Placeholder</p>
       </div>
     </div>
   </div>
 </body>
-
 </html>
 
 <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
@@ -108,10 +68,9 @@
 
 <script>
   function load() {
-    var mydata = JSON.parse(words);
-    for(var i = 0; i < mydata.length; i++) {
-      updateButton(mydata[i].one + " | " + mydata[i].two + " | " + mydata[i].three, i);
-    }
+    console.log("loaded");
+    var mydata = JSON.parse(total);
+    document.getElementById("notes").innerHTML = mydata[0].content;
   }
 
   function updateButton(desc, ind) {
@@ -120,20 +79,13 @@
 </script>
 
 <script>
+  // let isLoggedIn = false;
   $(document).ready(function() {
-
-    load();
     console.log('hello world');
+    load();
 
-  });
+    // TODO check if user is logged in or not
 
-  $("#largeNotesBtn").click(function() {
-    localStorage.setItem("currDocType", JSON.stringify("largeNotes"));
-    window.location.href = 'scan-material.html';
-  });
-
-  $("#topic-button0").click(function() {
-    window.location.href = 'topic-page.html';
   });
 
 </script>
