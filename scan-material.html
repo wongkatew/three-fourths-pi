@@ -10,6 +10,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="css/custom.css" rel="stylesheet"/>
   </head>
 
@@ -45,7 +46,7 @@
     </div>
     <div class="row section-block-container" id="takePhotoSection">
       <div class="col section-block" style="padding:20px;">
-        <input type="file" accept="image/*" capture="camera" id="fileLocation">
+        <input type="file" accept="image/*" capture="camera" id="fileLocation" onchange="readURL(this)">
       </div>
     </div>
     <div class="row section-block-container" id="calendarSection">
@@ -55,12 +56,12 @@
     </div>
     <div class="row section-block-container" id="smallNotesSection">
       <div class="col section-block" style="padding:20px;">
-        <button class="btn btn-primary btn-lg" id="smolNoteButton">Upload and Convert</button>
+        <button class="btn btn-primary btn-lg" id="smallNoteBtn">Upload and Convert</button>
       </div>
     </div>
     <div class="row section-block-container" id="largeNoteSection">
       <div class="col section-block" style="padding:20px;">
-        <button class="btn btn-primary btn-lg" id="notSmolNoteButton">Upload and Convert</button>
+        <button class="btn btn-primary btn-lg" id="notSmolNoteBtn">Upload and Convert</button>
       </div>
     </div>
   </div>
@@ -83,6 +84,8 @@
 </script>
 
 <script>
+
+  var base64text;
   // let isLoggedIn = false;
   $(document).ready(function() {
     console.log('hello world');
@@ -122,22 +125,41 @@
     window.location.href='add-to-cal.html';
   });
 
-  $('#smallNotesBtn').click(function() {
+  $('#smallNoteBtn').click(function() {
     window.location.href='handwriting.html';
+    postDataColor(base64text);
+    postDataVision(base64text);
   });
 
-  $('#notSmolNoteButton').click(function() {
+  $('#notSmolNoteBtn').click(function() {
     window.location.href='lots-of-buttons.html';
   });
 
-  function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+  var handleFileSelect = function(evt) {
+    var files = evt.target.files;
+    var file = files[0];
 
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    ctx.drawImage(img, 0, 0);
-  }
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload = function(readerEvt) {
+            var binaryString = readerEvt.target.result;
+            base64text = 'data:image/jpg;base64,' + btoa(binaryString);
+            // alert(base64text);
+            console.log(base64text);
+            // var img = new Image();
+            // img.src='data:image/jpg;base64,' + base64text;
+            // document.body.appendChild(img); FOR TESTING, KEEP THESE COMMENTS
+        };
+
+        reader.readAsBinaryString(file);
+    }
+};
+
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+    document.getElementById('fileLocation').addEventListener('change', handleFileSelect, false);
+} else {
+    alert('The File APIs are not fully supported in this browser.');
+}
 
 </script>
